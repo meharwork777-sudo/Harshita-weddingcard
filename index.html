@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harshita weds Tarun</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<!-- DOOR (images/door.jpg) -->
+<div id="door">
+  <div class="panel left"></div>
+  <div class="panel right"></div>
+  <button id="tapBtn">Tap to begin</button>
+</div>
+
+<audio id="music" src="music.mp3" loop></audio>
+<button id="musicBtn" aria-label="Music on/off">🔊</button>
+<div id="petals"></div>
+
+<!-- PAGE 1 (images/page1.jpg) -->
+<section class="page"><div class="frame reveal" id="p1">
+  <div class="txt"><p class="small">With the blessings of family</p>
+  <h1 class="script">Harshita</h1><p class="weds">weds</p><h1 class="script">Tarun</h1>
+  <p class="hint">Scroll down ↓</p></div>
+  <div class="arrow">⌄</div>
+</div></section>
+
+<!-- PAGE 2 (images/page2.jpg + scratch box) -->
+<section class="page"><div class="frame reveal" id="p2">
+  <div class="txt"><h2 class="script">Scratch to reveal the date</h2></div>
+  <div class="scratch-box">
+    <div id="date"><span class="txt d">27<br><small>October 2026</small></span></div>
+    <canvas id="scratch"></canvas>
+  </div>
+  <div class="arrow">⌄</div>
+</div></section>
+
+<!-- PAGE 3 - FINAL (images/page3.jpg + map button) -->
+<section class="page"><div class="frame reveal" id="p3">
+  <div class="txt"><h2 class="script">Join us</h2><p class="time">🕗 8:00 PM</p>
+  <p id="venueName" class="vn"></p></div>
+  <a id="mapBtn" class="btn" target="_blank" rel="noopener"><span class="txt">📍 Tap to get location</span></a>
+</div></section>
+
+<script src="script.js"></script>
+</body>
+</html>

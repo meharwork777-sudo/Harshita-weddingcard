@@ -1,0 +1,74 @@
+/* ========== EASY SETTINGS ========== */
+:root{
+  --bg:#2e0610;            /* colour behind your pages (side/top bars) */
+  --gold:#d4af37; --maroon:#5a0f1f; --cream:#fff3d6;
+
+  /* Scratch box position on page 2, in % of the page (move it to fit YOUR design) */
+  --sx:23.5%; --sy:48%; --sw:53%; --sh:12%;
+  /* Map button position on page 3, in % of the page */
+  --bx:24%; --by:82.2%; --bw:52%; --bh:6%;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y mandatory}
+body{font-family:'Poppins',sans-serif;color:var(--cream);background:var(--bg)}
+body.locked{overflow:hidden}
+.script{font-family:'Great Vibes',cursive;color:var(--gold);font-weight:400}
+
+/* each page = one 9:16 picture centred on the screen */
+.page{height:100vh;height:100dvh;scroll-snap-align:start;display:flex;justify-content:center;align-items:center;background:var(--bg)}
+.frame{position:relative;width:min(100vw,56.25dvh);aspect-ratio:9/16;background:#3a0812 center/100% 100% no-repeat;overflow:hidden}
+#p1{background-image:url(images/page1.jpg)}
+#p2{background-image:url(images/page2.jpg)}
+#p3{background-image:url(images/page3.jpg)}
+.reveal{opacity:0;transform:scale(.96);transition:1s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* placeholder text, hidden automatically once you switch on your own designs (see script.js) */
+.txt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px}
+.frame>.txt{position:absolute;inset:0}
+.custom .txt{display:none!important}
+h1.script{font-size:clamp(3rem,15vw,5rem)}h2.script{font-size:clamp(2rem,9vw,3rem)}
+.weds{letter-spacing:6px;text-transform:uppercase}.small{letter-spacing:2px;font-size:.8rem;text-transform:uppercase}
+.hint{font-size:.8rem;opacity:.7}.time{font-size:1.8rem;color:var(--gold)}.emoji{font-size:4rem}
+
+/* DOOR: put door.jpg in images/ (it is split across both doors) */
+#door{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;padding-bottom:14vh;justify-content:center;perspective:1200px}
+.panel{position:absolute;top:0;width:50%;height:100%;transition:transform 1.8s cubic-bezier(.7,0,.2,1);
+  background:url(images/door.jpg) no-repeat,repeating-linear-gradient(90deg,#4a0b19 0 38px,#3a0812 38px 40px);
+  background-size:200% 100%,auto;box-shadow:inset 0 0 60px #000}
+.panel.left{left:0;transform-origin:left;background-position:left,0 0}
+.panel.right{right:0;transform-origin:right;background-position:right,0 0}
+#tapBtn{position:relative;z-index:2;padding:16px 34px;font:600 1.1rem 'Poppins';color:#2e0610;background:var(--gold);
+  border:0;border-radius:40px;cursor:pointer;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{transform:scale(1.08);box-shadow:0 0 30px var(--gold)}}
+#door.open .panel.left{transform:rotateY(-105deg)}
+#door.open .panel.right{transform:rotateY(105deg)}
+#door.open #tapBtn{opacity:0;pointer-events:none}
+
+/* petals & confetti */
+#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:40}
+#petals span{position:absolute;top:-40px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.burst{position:fixed;left:50%;top:50%;font-size:1.6rem;pointer-events:none;z-index:60;animation:burst 1.4s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--x),var(--y)) rotate(400deg);opacity:0}}
+
+/* scratch: images/date.png is what is hidden underneath, images/scratch-cover.png is the cover */
+.scratch-box{position:absolute;left:var(--sx);top:var(--sy);width:var(--sw);height:var(--sh);overflow:hidden;border-radius:10px}
+#date{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:var(--maroon);text-align:center}
+body:not(.custom) #date{background:var(--cream)}  /* only for the placeholder look */
+#date .d{font:400 3rem/1.1 'Great Vibes'}#date small{font:600 .8rem 'Poppins';letter-spacing:3px}
+#scratch{position:absolute;inset:0;width:100%;height:100%;touch-action:none;transition:opacity 1s}
+#scratch.done{opacity:0;pointer-events:none}
+
+/* map button sits on top of your design */
+.btn{position:absolute;left:var(--bx);top:var(--by);width:var(--bw);height:var(--bh);display:flex;align-items:center;justify-content:center;
+  border-radius:40px;background:var(--gold);color:#2e0610;text-decoration:none;font-weight:600}
+.custom .btn{background:transparent}
+
+/* scroll arrow + music button */
+.arrow{position:absolute;bottom:2.5%;left:0;right:0;text-align:center;font-size:2rem;color:#a87c1c;animation:bob 1.6s infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+#musicBtn{position:fixed;top:14px;right:14px;z-index:70;width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);
+  background:rgba(46,6,16,.75);color:#fff;font-size:1.2rem;cursor:pointer;display:none}
+body:not(.locked) #musicBtn{display:block}
